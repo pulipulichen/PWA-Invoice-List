@@ -55,7 +55,26 @@ let Index = {
         return (Number(a.slice(0,1)) - Number(b.slice(0,1)))
       })
       
-      // 
+      let tempOutput = []
+      let lastNumber
+      output.forEach(o => {
+        if (tempOutput.length === 0) {
+          tempOutput.push(o)
+          lastNumber = Number(o.slice(0, 1))
+          return false
+        }
+        
+        let currentNumber = Number(o.slice(0, 1))
+        
+        if (currentNumber - lastNumber > 1) {
+          tempOutput.push('')
+        }
+        
+        lastNumber = currentNumber
+        tempOutput.push(o)
+      })
+      
+      output = tempOutput
       
       return output.join('\n')
     }
